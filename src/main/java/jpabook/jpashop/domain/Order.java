@@ -18,12 +18,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "orders")
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
 	@Id @GeneratedValue
@@ -35,7 +38,7 @@ public class Order {
 	private Member member;
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private List<OrderItem> orderItems = new ArrayList<>();
+	private List<OrderItem> orderItems = new ArrayList<>(); 
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "delivery_id")
@@ -45,6 +48,8 @@ public class Order {
 	
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status; //주문상태 [ORDER, CANCEL]
+	
+	//protected Order() {}
 	
 	//==연관관계 메서드==//
 	public void setMember(Member member) {
