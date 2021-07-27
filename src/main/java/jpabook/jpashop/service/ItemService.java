@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,11 +22,13 @@ public class ItemService {
 		itemRepository.save(item);
 	}
 	
-	public List<Item> findItems() {
-		return itemRepository.findAll();
+	@Transactional
+	public void updateItem(Long itemId, String name, int price, int stockQuantity) {	
+		Item findItem = itemRepository.findOne(itemId);
+		findItem.change(name, price, stockQuantity);
 	}
 	
-	public Item fineOne(Long itemId) {
-		return itemRepository.findOne(itemId);
-	}
+	public List<Item> findItems() { return itemRepository.findAll(); }
+	
+	public Item fineOne(Long itemId) { return itemRepository.findOne(itemId); }
 }
