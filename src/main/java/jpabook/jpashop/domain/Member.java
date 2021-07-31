@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +24,8 @@ public class Member {
 	private Long id;
 	
 	private String name;
-	
+
+	@JsonIgnore
 	@Embedded
 	private Address address;
 	
