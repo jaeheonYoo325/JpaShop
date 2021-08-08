@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import jpabook.jpashop.domain.Member;
-import jpabook.jpashop.repository.MemberRepository;
+import jpabook.jpashop.repository.MemberRepositoryOld;
 import jpabook.jpashop.service.MemberService;
 
 @RunWith(SpringRunner.class)
@@ -26,7 +26,7 @@ import jpabook.jpashop.service.MemberService;
 public class MemberServiceTest {
 
 	@Autowired MemberService memberService;
-	@Autowired MemberRepository memberRepository;
+	@Autowired MemberRepositoryOld memberRepository;
 	@Autowired EntityManager em;
 	
 	@Test
